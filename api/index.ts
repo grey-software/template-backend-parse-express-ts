@@ -9,6 +9,12 @@ import { GeoLocation } from "./GeoLocation";
 //import GeoLocation from "GeoLocation";
 import { GeoPoint } from "parse";
 
+import {UsersRouter} from "./routes/users"
+
+import BodyParser from "body-parser"
+
+
+
 const PORT = 8000;
 const BASE_URL = process.env.BASE_URL || "localhost";
 
@@ -47,6 +53,12 @@ var parseDashboard = new ParseDashboard(
 
 var app = express();
 
+// parse application/x-www-form-urlencoded
+app.use(BodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(BodyParser.json())
+
 // Serve static assets from the /public folder
 app.use("/public", express.static(path.join(__dirname, "/public")));
 
@@ -55,6 +67,7 @@ app.use("/api", parseApi);
 
 // Serve the Parse Dashboard at /dashboard
 app.use("/dashboard", parseDashboard);
+app.use("/users", UsersRouter);
 
 app.get("/", (_, res) =>
   res.send("Your backend is live! Visit /dashboard for more details!")
@@ -97,14 +110,6 @@ function populateDbWithTestData() {
       }
     );
   })
-
-  // let g1 = new GeoLocation("London Bridge", "51.507879" ,"-0.087732");
-  // let g2 = new GeoLocation("Hyde Park", "51.508610", "-0.163611");
-  // let g3 = new GeoLocation("Greenwich Park","51.476688", "0.000130");
-
-  // geoLocationDbModel.set(GeoLocation.Latitude, g1.latitude);
-  // geoLocationDbModel.set(GeoLocation.Longitude, g1.longitude);
-  // geoLocationDbModel.set(GeoLocation.name, g1.nameOfLocation);
 
   gameScore.save().then(
     (gameScore: any) => {

@@ -14,8 +14,8 @@
     "dev:windows": "./node_modules/.bin/pm2 start index.ts --watch --no-daemon",
     "stop:windows": "%yarn bin%/pm2 stop index"
   },
-  
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "parse": "^2.18.0",

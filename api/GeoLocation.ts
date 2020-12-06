@@ -8,8 +8,6 @@ export class GeoLocation {
     private long: string;
     private name: string;
 
-
-
     public constructor(nameOfLocation: string, latitude: string, longitude: string)  {
         this.lat = latitude;
         this.long = longitude;
