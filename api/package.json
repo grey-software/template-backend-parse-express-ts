@@ -8,9 +8,13 @@
   "scripts": {
     "start": "$(yarn bin)/pm2 start index.ts",
     "dev": "$(yarn bin)/pm2 start index.ts --watch --no-daemon",
-    "postinstall": "$(yarn bin)/pm2 install typescript",
-    "stop": "$(yarn bin)/pm2 stop index"
+    "postinstall": "./node_modules/.bin/pm2 install typescript",
+    "stop": "$(yarn bin)/pm2 stop index",
+    "start:windows": "./node_modules/.bin/pm2 start index.ts",
+    "dev:windows": "./node_modules/.bin/pm2 start index.ts --watch --no-daemon",
+    "stop:windows": "%yarn bin%/pm2 stop index"
   },
+  
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
