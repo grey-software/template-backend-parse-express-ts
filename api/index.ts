@@ -5,11 +5,13 @@ const ParseServer = require("parse-server").ParseServer;
 const Parse = require('parse/node');
 var path = require("path");
 import express from "express";
-import { GeoLocation } from "./GeoLocation";
+import { GeoLocation } from "./models/GeoLocation";
+import { Payments } from "D:/Git/template-backend-parse-express-ts/api/models/Payment";
 //import GeoLocation from "GeoLocation";
 import { GeoPoint } from "parse";
 
 import {UsersRouter} from "./routes/users"
+import {PaymentsRouter} from "./routes/payments"
 
 import BodyParser from "body-parser"
 
@@ -88,7 +90,7 @@ function populateDbWithTestData() {
   const gameScore = new GameScore();
 
   gameScore.set("score", 1337);
-  gameScore.set("playerName", "Sean Plott");
+  gameScore.set("playerName", "Sean Plot");
 
   const GeoLocationDbModel = Parse.Object.extend("GeoLocation");
 
